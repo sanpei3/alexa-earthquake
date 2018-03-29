@@ -7,8 +7,7 @@
                     "name": "AMAZON.CancelIntent",
                     "samples": [
                         "キャンセル",
-                        "取り消し",
-                        "やっぱりやめる"
+                        "取り消し"
                     ]
                 },
                 {
@@ -23,6 +22,7 @@
                 {
                     "name": "AMAZON.StopIntent",
                     "samples": [
+                        "やっぱりやめる",
                         "オーケー",
                         "ありがとう もういいよ",
                         "もう大丈夫だよ",
