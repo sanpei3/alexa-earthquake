@@ -30,7 +30,6 @@ function help(t) {
     const result = helpmsg[help_num];
     t.attributes['help_num'] = help_num + 1;
     t.emit(':ask', result);
-
 }
 
 function prefToNumber(pref) {
@@ -109,33 +108,33 @@ const handlers = {
     },
     'jishin': function () {
         var prefs = null;
-	    prefs = prefToNumber(this.event.request.intent.slots.pref.value);
+	prefs = prefToNumber(this.event.request.intent.slots.pref.value);
         prefs = Number(prefs);
         if (prefs == null || prefs == 0) {
-	        this.emit(':ask', "都道府県名で質問してください。");
+	    this.emit(':ask', "都道府県名で質問してください。");
             return;
         }
-	    let self = this;
-	    var result ="HOGE";
-	    var documentClient = new AWS.DynamoDB.DocumentClient();
-	    const params = {
+	let self = this;
+	var result ="HOGE";
+	var documentClient = new AWS.DynamoDB.DocumentClient();
+	const params = {
             TableName: "earthquake",
             Key:{
-		        "prefecture": prefs
+		"prefecture": prefs
             }
-	    };
-	    documentClient.get(params, function(err, data) {
+	};
+	documentClient.get(params, function(err, data) {
             if (err) {
-		        console.error('Unable to get item. Error JSON:', JSON.stringify(err, null, 2));
-		        result = "すみません、システムエラーです。";
-		        self.emit(':tell', result);
+		console.error('Unable to get item. Error JSON:', JSON.stringify(err, null, 2));
+		result = "すみません、システムエラーです。";
+		self.emit(':tell', result);
             } else {
-		        result = data.Item.info.s;
-		        self.emit(':ask', result);
-	        }
-	    });
+		result = data.Item.info.s;
+		self.emit(':ask', result);
+	    }
+	});
     },
-
+    
     'AMAZON.HelpIntent': function () {
         help(this);
     },
