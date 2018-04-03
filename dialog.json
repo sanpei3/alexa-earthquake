@@ -22,6 +22,7 @@
                 {
                     "name": "AMAZON.StopIntent",
                     "samples": [
+                        "アレクサ",
                         "やっぱりやめる",
                         "オーケー",
                         "ありがとう もういいよ",
@@ -10533,37 +10534,6 @@
                     ]
                 }
             ]
-        },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "jishin",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "pref",
-                            "type": "pref",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Intent-jishin.IntentSlot-pref"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        "prompts": [
-            {
-                "id": "Elicit.Intent-jishin.IntentSlot-pref",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "すいません、聞き取れませんでした。都道府県・地方名で尋ねてください"
-                    }
-                ]
-            }
-        ]
+        }
     }
 }
