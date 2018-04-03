@@ -111,8 +111,16 @@ const handlers = {
 		this.emit(':ask', 'ようこそ、地震スコープに、都道府県名で質問してください。');
 	},
 	'jishin': function() {
+		if (this.event.request.intent == undefined) {
+			this.emit(':ask', "すいません、聞き取れませんでした。もう一度、都道府県名で質問してください。");
+			return;
+		}
 		var prefs = null;
-		prefs = prefToNumber(this.event.request.intent.slots.pref.value);
+		if (this.event.request.intent.slots["pref"]["resolutions"]["resolutionsPerAuthority"][0]["status"]["code"] != "ER_SUCCESS_MATCH") {
+			prefs = prefToNumber(this.event.request.intent.slots.pref.value);
+		} else {
+			prefs = this.event.request.intent.slots["pref"]["resolutions"]["resolutionsPerAuthority"][0]["values"][0]["value"]["id"];
+		}
 		prefs = Number(prefs);
 		if (prefs == null || prefs == 0) {
 			this.emit(':ask', "都道府県名で質問してください。");
