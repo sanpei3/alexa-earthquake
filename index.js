@@ -116,7 +116,7 @@ const handlers = {
 			return;
 		}
 		var prefs = null;
-		if (this.event.request.intent.slots["pref"]["resolutions"]["resolutionsPerAuthority"][0]["status"]["code"] != "ER_SUCCESS_MATCH") {
+		if (this.event.request.intent.slots["pref"]["resolutions"] == undefined || this.event.request.intent.slots["pref"]["resolutions"]["resolutionsPerAuthority"][0]["status"]["code"] != "ER_SUCCESS_MATCH") {
 			prefs = prefToNumber(this.event.request.intent.slots.pref.value);
 		} else {
 			prefs = this.event.request.intent.slots["pref"]["resolutions"]["resolutionsPerAuthority"][0]["values"][0]["value"]["id"];
