@@ -14,10 +14,10 @@ exports.handler = function(event, context, callback) {
 
 function help(t) {
 	const helpmsg = [
-		"東京都の地震は、のように都道府県名を発音ください。",
+		"東京都の地震は、のように道州地方名、都道府県名、市の名前で質問ください。",
 		"東京都、のように都道府県名だけでも調べられます。",
-		"データはP2P地震情報を一分おきに取得しています。都道府県名で質問ください。",
-		"対応している地域は日本国内のみです。都道府県名で質問ください。",
+		"データはP2P地震情報を一分おきに取得しています。道州地方名、都道府県名、市の名前で質問ください。",
+		"対応している地域は日本国内のみです。道州地方名、都道府県名、市の名前で質問ください。",
 		"終了方法は、終了と呼びかけてください。",
 	];
 	var help_num = Number(t.attributes['help_num']);
@@ -108,11 +108,11 @@ function prefToNumber(pref) {
 
 const handlers = {
 	'LaunchRequest': function() {
-		this.emit(':ask', 'ようこそ、地震スコープに、都道府県名で質問してください。');
+		this.emit(':ask', 'ようこそ、地震スコープに、道州地方名、都道府県名、市の名前で質問ください。');
 	},
 	'jishin': function() {
 		if (this.event.request.intent == undefined) {
-			this.emit(':ask', "すいません、聞き取れませんでした。もう一度、都道府県名で質問してください。");
+			this.emit(':ask', "すいません、聞き取れませんでした。もう一度、道州地方名、都道府県名、市の名前で質問ください。");
 			return;
 		}
 		var prefs = null;
@@ -123,7 +123,7 @@ const handlers = {
 		}
 		prefs = Number(prefs);
 		if (prefs == null || prefs == 0) {
-			this.emit(':ask', "都道府県名で質問してください。");
+			this.emit(':ask', "道州地方名、都道府県名、市の名前で質問ください。");
 			return;
 		}
 		let self = this;
