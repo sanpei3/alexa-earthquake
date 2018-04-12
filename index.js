@@ -108,11 +108,11 @@ function prefToNumber(pref) {
 
 const handlers = {
 	'LaunchRequest': function() {
-		this.emit(':ask', 'ようこそ、地震スコープに、道州地方名、都道府県名、市の名前で質問ください。');
+		this.emit(':ask', 'ようこそ、地震スコープに、道州地方、都道府県、市の名前で質問ください。');
 	},
 	'jishin': function() {
 		if (this.event.request.intent == undefined) {
-			this.emit(':ask', "すいません、聞き取れませんでした。もう一度、道州地方名、都道府県名、市の名前で質問ください。");
+			this.emit(':ask', "すいません、聞き取れませんでした。もう一度、道州地方、都道府県、市の名前で質問ください。");
 			return;
 		}
 		var prefs = null;
@@ -123,7 +123,7 @@ const handlers = {
 		}
 		prefs = Number(prefs);
 		if (prefs == null || prefs == 0) {
-			this.emit(':ask', "道州地方名、都道府県名、市の名前で質問ください。");
+			this.emit(':ask', "道州地方、都道府県、市の名前で質問ください。");
 			return;
 		}
 		let self = this;
